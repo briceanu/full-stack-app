@@ -1,0 +1,62 @@
+@use './mixins.module.scss' as *;
+.main__container {
+  height: calc(100dvh - 50px);
+  background-color: #8758ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  h1 {
+    position: fixed;
+    top: calc(10% + 2rem);
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    font-size: clamp(2.2rem, 3vw + 2%, 30px + 2%);
+    color: lighten($color: #8758ff, $amount: 10);
+  }
+}
+.circles__container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: clamp(20vw, 300px + 5%, 15vw);
+  width: clamp(20vw, 300px + 5%, 15vw);
+  border-radius: 50%;
+}
+.circle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
+
+  height: clamp(50px, 2rem, 2.2rem);
+  width: clamp(50px, 2rem, 2.2rem);
+  border-radius: 50%;
+  background-color: #8758ff;
+  background-color: darken($color: #8758ff, $amount: 30);
+  //
+  $circleCount: 8;
+  $circleSize: 50px;
+  $circleSize: clamp(50px, 1.2rem, 1.4rem);
+  $circleDistance: 75px;
+  animation: fadeCircle 900ms linear infinite;
+  @for $i from 1 through $circleCount {
+    $angle: 360deg / $circleCount * $i;
+    &:nth-child(#{$i}) {
+      transform: rotate($angle) translate($circleDistance);
+      animation-delay: $i * 100ms;
+    }
+  }
+}
+
+@keyframes fadeCircle {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

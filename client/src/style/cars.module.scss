@@ -1,0 +1,50 @@
+@use './mixins.module.scss' as *;
+
+.cars__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding: 0.5rem;
+  min-height: calc(100dvh - 60px - 0.5rem);
+
+  background: linear-gradient(
+    198deg,
+    lighten($color: #472e8585, $amount: 0),
+    lighten($color: #8758ff, $amount: 10),
+    lighten($color: #8758ff7c, $amount: 12),
+    lighten($color: #29106867, $amount: 14),
+    lighten($color: #8758ff, $amount: 16),
+    lighten($color: #3d3b42, $amount: 18),
+    lighten($color: #3d3b42, $amount: 18),
+    lighten($color: #3c247979, $amount: 18),
+    lighten($color: #3d3b42, $amount: 18),
+    lighten($color: #321a6e, $amount: 18),
+    lighten($color: #3d3b42, $amount: 18),
+    lighten($color: #3230388a, $amount: 18)
+  );
+}
+
+.car__card {
+  border: 1px solid black;
+  padding-inline: 0.5rem;
+  text-align: center;
+  font-family: map-get($fonts, font-catamaran);
+  font-size: clamp(1.2rem, 4vw + 5px, 1rem);
+  border-radius: 10px;
+  transition: all 400ms ease-in-out;
+  opacity: 0.6;
+
+  &:hover {
+    box-shadow: inset 0px 0px 100px lighten($color: white, $amount: 10);
+    scale: 0.98;
+    border-radius: 5px;
+    opacity: 1;
+  }
+  h1,
+  p,
+  h2 {
+    padding: 0;
+    margin: 0.2rem;
+  }
+}
