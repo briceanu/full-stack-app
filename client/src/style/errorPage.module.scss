@@ -1,7 +1,7 @@
 @use './mixins.module.scss' as *;
 
 .error__container {
-  width: 100dvw;
+  max-width: 100dvw;
   height: calc(100dvh - 50px);
   background-color: lighten($color: #8758ff, $amount: 10);
   display: flex;
@@ -37,5 +37,11 @@
   90%,
   100% {
     transform: rotate(360deg);
+  }
+}
+@include sm {
+  .error__container {
+    text-align: center;
+    flex-direction: column;
   }
 }

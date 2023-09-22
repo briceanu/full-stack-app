@@ -2,12 +2,13 @@
 
 .cars__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.3fr));
   column-gap: 0.5rem;
   row-gap: 0.5rem;
   padding: 0.5rem;
   min-height: calc(100dvh - 60px - 0.5rem);
-
+  justify-content: center;
+  align-content: flex-start;
   background: linear-gradient(
     198deg,
     lighten($color: #472e8585, $amount: 0),
@@ -26,8 +27,12 @@
 }
 
 .car__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 1px solid black;
   padding-inline: 0.5rem;
+  padding-block: 0.5rem;
   text-align: center;
   font-family: map-get($fonts, font-catamaran);
   font-size: clamp(1.2rem, 4vw + 5px, 1rem);
@@ -46,5 +51,42 @@
   h2 {
     padding: 0;
     margin: 0.2rem;
+  }
+}
+
+.remove__btn {
+  &:hover {
+    cursor: pointer;
+  }
+  color: black;
+  text-decoration: none;
+  padding: 0rem 0.3rem;
+  font-family: map-get($fonts, font-catamaran);
+  font-size: clamp(1.4rem, 4vw + 10px, 1rem);
+
+  background: linear-gradient(
+    0deg,
+    lighten($color: #8758ff, $amount: 0),
+    lighten($color: #8758ff, $amount: 10),
+    lighten($color: #8758ff, $amount: 12),
+    lighten($color: #8758ff, $amount: 14),
+    lighten($color: #8758ff, $amount: 16),
+    lighten($color: #8758ff, $amount: 18)
+  );
+  //
+  border-radius: 9px;
+  letter-spacing: 0.1rem;
+  outline: 2px solid darken($color: #8758ff, $amount: 10);
+  transition: all 300ms ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: lighten($color: #8758ff, $amount: 10);
+    outline-offset: 2px;
+  }
+}
+
+@include sm {
+  .cars__container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }

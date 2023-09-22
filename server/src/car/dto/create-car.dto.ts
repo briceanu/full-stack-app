@@ -9,10 +9,17 @@ export class CreateCarDto {
   @IsNotEmpty()
   color: string;
 
+  @IsString()
+  @IsNotEmpty()
+  type: string;
+
+  @IsString()
+  @IsNotEmpty()
+  status: string;
+
   @IsNumber()
   @IsNotEmpty()
   year: number;
 
-  @IsNotEmpty()
   description: string;
 }

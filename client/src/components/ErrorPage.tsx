@@ -2,7 +2,7 @@ import style from '../style/errorPage.module.scss';
 // import access_denied from '../assets/access_denied.svg';
 import access_denied from '../assets/access_denied.svg';
 
-interface ErrorProps {
+export interface ErrorProps {
   error: Error;
 }
 

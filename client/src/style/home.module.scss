@@ -1,5 +1,20 @@
+@use './mixins.module.scss' as *;
+
 .home__container {
-  background-color: rgb(64, 73, 64);
-  height: calc(100dvh - 50px);
+  min-height: calc(100dvh - 50px);
   font-size: 20px;
+  background-image: url(../assets/car.jpg);
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.3rem;
+  align-content: flex-end;
+  scroll-behavior: smooth;
+}
+@include lg {
+  .home__container {
+    justify-content: center;
+    align-items: center;
+  }
 }

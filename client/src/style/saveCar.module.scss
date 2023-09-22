@@ -1,0 +1,153 @@
+@use './mixins.module.scss' as *;
+
+form {
+  font-family: map-get($fonts, font-catamaran);
+  font-size: clamp(1.2rem, 4vw + 5px, 1rem);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  background-color: rgba(0, 255, 0, 0.267);
+  gap: 10px;
+  min-height: 92dvh;
+  select > option {
+    font-family: map-get($fonts, font-catamaran);
+    font-size: clamp(1.2rem, 4vw + 5px, 1rem);
+  }
+}
+
+form > select:focus {
+  border: 2px solide blue;
+}
+form > select {
+  outline: none;
+  border: none;
+}
+form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form > div {
+  select {
+    width: 100%;
+    padding: 0.3rem 0.123rem;
+    border-radius: 0.4em;
+    margin-top: -1.6em;
+    &:focus {
+      border: 3px solid rgb(120, 120, 202);
+      outline: none;
+    }
+  }
+
+  p {
+    margin-block-start: 0.2em;
+    padding: 0 0.3em;
+  }
+  min-width: 60%;
+}
+form > div:has(label) {
+  font-family: map-get($fonts, font-peralta);
+}
+
+div select {
+  appearance: none;
+  position: relative;
+  font-family: map-get($fonts, font-peralta);
+}
+.year,
+.brand,
+.type,
+.color > span {
+  position: relative;
+}
+
+.color {
+  position: relative;
+}
+.color > span {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+}
+
+div select > option {
+  font-family: map-get($fonts, font-chilanka);
+}
+
+div > span::after {
+  content: url(../assets/arrow.svg);
+  height: 20px;
+  width: 20px;
+  display: block;
+  position: absolute;
+  top: 60%;
+  right: 0.5rem;
+  pointer-events: none;
+}
+//
+.select__wrapper > select {
+  cursor: pointer;
+}
+.select__wrapper > span::after {
+  transition: all 250ms ease-in-out;
+  transform-origin: center center;
+}
+
+.select__wrapper:hover span::after {
+  rotate: 90deg;
+  translate: 1px 1px;
+}
+
+//styling textarea
+textarea {
+  font-family: map-get($fonts, font-catamaran);
+  font-size: clamp(1.2rem, 4vw + 5px, 1rem);
+  padding-inline-start: 0.4em;
+}
+input:hover {
+  cursor: pointer;
+}
+form button {
+  padding: 0.2em 1.7em;
+  font-family: map-get($fonts, font-catamaran);
+  font-size: clamp(1rem, 4vw + 5px, 1rem);
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid saddlebrown;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 10px grey;
+    box-shadow: calc(10px - 1vw) 1px 10px grey;
+  }
+}
+// form button:nth-last-child(1) {
+//   position: relative;
+// }
+// form button:nth-last-child(1)::after {
+//   content: url(../assets/arrow.svg);
+//   position: absolute;
+//   display: block;
+//   top: 20%;
+//   right: 2px;
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 50%;
+//   transition: rotate 250ms ease-in-out;
+// }
+// form button:nth-last-child(1):hover::after {
+//   rotate: 90deg;
+// }
+
+@include md {
+  form {
+    grid-template-columns: repeat(1, 1fr);
+    text-wrap: pretty;
+
+    textarea {
+      width: 100%;
+    }
+  }
+}

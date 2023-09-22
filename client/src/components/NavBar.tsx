@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import style from '../style/navBar.module.scss';
 import car from '../assets/car.svg';
+import HamburgerNavBar from './HamburgerNavBar';
 
 const NavBar = () => {
   return (
@@ -27,6 +28,7 @@ const NavBar = () => {
             Save Car
           </NavLink>
         </nav>
+        <HamburgerNavBar />
       </div>
       <Outlet />
     </>

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
 import { CarService } from './car.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { Car } from './entities/car.entity';
@@ -7,7 +7,7 @@ import { Car } from './entities/car.entity';
 export class CarController {
   constructor(private readonly carService: CarService) {}
 
-  @Post('/savecar')
+  @Post('/save')
   create(@Body() createCarDto: CreateCarDto): Promise<Car> {
     return this.carService.create(createCarDto);
   }
@@ -15,6 +15,11 @@ export class CarController {
   @Get('/cars')
   findAll(): Promise<Car[]> {
     return this.carService.findAll();
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string): Promise<void> {
+    return this.carService.remove(id);
   }
 
   // @Get(':id')
@@ -25,10 +30,5 @@ export class CarController {
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateCarDto: UpdateCarDto) {
   //   return this.carService.update(+id, updateCarDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.carService.remove(+id);
   // }
 }

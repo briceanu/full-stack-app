@@ -17,11 +17,13 @@ export class CarRepository extends Repository<Car> {
   }
 
   async createCar(createCarDto: CreateCarDto): Promise<Car> {
-    const { brand, color, year, description } = createCarDto;
+    const { brand, status, color, type, year, description } = createCarDto;
     const car = this.create({
-      brand,
       color,
       year,
+      brand,
+      type,
+      status,
       description,
     });
 
@@ -34,6 +36,7 @@ export class CarRepository extends Repository<Car> {
     if (cars.length === 0) {
       throw new NotFoundException('No cars avalilable to be displayed');
     }
+
     return cars;
   }
 }
