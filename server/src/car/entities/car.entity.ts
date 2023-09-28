@@ -7,6 +7,7 @@ export class Car {
 
   @Column({ type: 'varchar', length: 255 })
   brand: string;
+  // the length represents the maxLength
   // @Column({ type: 'varchar', length: 255, unique: true })
   // brand: string;
 

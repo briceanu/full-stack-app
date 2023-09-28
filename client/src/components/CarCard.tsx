@@ -34,7 +34,6 @@ const CarCard: React.FC<CarCardProps> = ({
   if (isQueryLoading) {
     return <Loading />;
   }
-
   return (
     <div className={style.car__card}>
       <h1>Brand: {brand}</h1>

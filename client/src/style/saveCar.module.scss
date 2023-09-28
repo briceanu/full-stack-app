@@ -7,6 +7,7 @@ form {
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   background-color: rgba(0, 255, 0, 0.267);
+  // background: #191d3a;
   gap: 10px;
   min-height: 92dvh;
   select > option {
@@ -15,13 +16,6 @@ form {
   }
 }
 
-form > select:focus {
-  border: 2px solide blue;
-}
-form > select {
-  outline: none;
-  border: none;
-}
 form > div {
   display: flex;
   flex-direction: column;
@@ -88,6 +82,14 @@ div > span::after {
   pointer-events: none;
 }
 //
+
+div span:nth-child(4)::after {
+  top: 36px;
+}
+div span:nth-last-child(1) {
+  top: 0px;
+}
+
 .select__wrapper > select {
   cursor: pointer;
 }
@@ -123,31 +125,162 @@ form button {
     box-shadow: calc(10px - 1vw) 1px 10px grey;
   }
 }
-// form button:nth-last-child(1) {
-//   position: relative;
-// }
-// form button:nth-last-child(1)::after {
-//   content: url(../assets/arrow.svg);
-//   position: absolute;
-//   display: block;
-//   top: 20%;
-//   right: 2px;
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   transition: rotate 250ms ease-in-out;
-// }
-// form button:nth-last-child(1):hover::after {
-//   rotate: 90deg;
-// }
+
+form div:has(textarea) {
+  position: relative;
+}
+
+form div:has(textarea.valid)::after {
+  content: url(../assets/check.svg);
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  right: 20px;
+}
+.error {
+  animation: shake 300ms ease-in-out 5;
+  color: firebrick;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    translate: 0px;
+  }
+  25%,
+  75% {
+    translate: -10px;
+  }
+  50% {
+    translate: 10px;
+  }
+}
+form:has(select, textarea) :focus {
+  border: 3px solid rgb(154, 154, 189);
+}
+
+form:has(button) > button {
+  position: relative;
+}
+
+form:has(button) > button:disabled {
+  color: darken($color: rgba(255, 255, 255, 0), $amount: 40);
+  background-color: darken($color: white, $amount: 20);
+}
+
+form:has(button) > button:disabled::after {
+  content: url(../assets/restricted.svg);
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  position: absolute;
+  top: 7px;
+  right: 30px;
+}
+
+//adding style to the toast message
+.toast__message__success {
+  color: wheat !important;
+  font-weight: 900;
+  width: calc(20vw - 10px);
+  font-size: clamp(1.25rem, 1.5rem, 2vw);
+  padding: 30px 20px;
+  border: 2px solid green;
+  text-align: center;
+  text-shadow: 2px 2px 2px lighten($color: #29106867, $amount: 14) !important;
+  background: linear-gradient(
+    -36deg,
+    lighten($color: #4c9c1e54, $amount: 0),
+    lighten($color: #54ac0c85, $amount: 10),
+    lighten($color: #1c5e137c, $amount: 12),
+    lighten($color: #42643c67, $amount: 14),
+    lighten($color: #2c72109d, $amount: 18),
+    lighten($color: #20681e71, $amount: 18)
+  ) !important;
+  animation: identifier 400ms linear;
+}
+
+.toast__message__error {
+  color: rgb(211, 52, 13) !important;
+  font-weight: 900;
+  width: calc(20vw - 10px);
+  font-size: clamp(1.25rem, 1.5rem, 2vw);
+  padding: 30px 20px;
+  border: 2px solid firebrick;
+  text-align: center;
+  text-shadow: 2px 2px 2px lighten($color: #29106867, $amount: 14) !important;
+  background: linear-gradient(
+    -36deg,
+    lighten($color: #852e7a54, $amount: 0),
+    lighten($color: #ff795885, $amount: 10),
+    lighten($color: #e41a0c7c, $amount: 12),
+    lighten($color: #a70c0c67, $amount: 14),
+    lighten($color: #ca24079d, $amount: 18),
+    lighten($color: #b4270e71, $amount: 18)
+  ) !important;
+  animation: shake 400ms linear;
+}
+
+@media (prefers-reduced-motion) {
+  .toast__message__success {
+    animation: rotate 1s linear;
+  }
+  .toast__message__error {
+    animation: shake 1s linear;
+  }
+}
+
+@include lg {
+  .toast__message__error {
+    width: 80%;
+  }
+}
 
 @include md {
+  form div:has(textarea.valid)::after {
+    top: 20px;
+    right: calc(30dvw - 3%);
+  }
+
+  .toast__message__error {
+    width: 100%;
+  }
   form {
     grid-template-columns: repeat(1, 1fr);
     text-wrap: pretty;
-
-    textarea {
+    div:has(textarea) {
+      align-items: center;
       width: 100%;
     }
+  }
+}
+@include sm {
+  form > div > textarea {
+    align-items: center !important;
+  }
+  textarea {
+    width: 80% !important;
+  }
+}
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+//
+@keyframes shake {
+  0%,
+  50% {
+    translate: 5px -5px;
+  }
+  25%,
+  75% {
+    translate: -5px 5px;
   }
 }

@@ -7,6 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cors());
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3001);
+  await app.listen(3002);
 }
 bootstrap();

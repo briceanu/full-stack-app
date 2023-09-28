@@ -1,0 +1,41 @@
+@use './mixins.module.scss' as *;
+
+$gap-size: 0.5rem;
+footer {
+  display: flex;
+  margin-top: 0.5em;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 90%;
+  background-color: white;
+  box-shadow: 0px 0px 4px grey;
+  border-radius: 5px;
+  .icons {
+    width: 40px;
+    height: 40px;
+    border-radius: 1px;
+    fill: grey;
+    margin-block: 0.3rem;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    gap: $gap-size;
+  }
+}
+@include xl {
+  footer {
+    width: 73%;
+  }
+}
+@include md {
+  footer {
+    width: 75%;
+  }
+}
+@include sm {
+  footer {
+    width: 95%;
+  }
+}

@@ -1,20 +1,269 @@
 @use './mixins.module.scss' as *;
 
 .home__container {
-  min-height: calc(100dvh - 50px);
-  font-size: 20px;
-  background-image: url(../assets/car.jpg);
+  // background-image: url(../assets/car.jpg);
   background-size: cover;
   background-position: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0.3rem;
-  align-content: flex-end;
-  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // text-align: center;
+  background-color: rgb(237, 238, 240);
+  min-height: calc(100dvw - 50px);
+  container: home / inline-size;
 }
-@include lg {
-  .home__container {
-    justify-content: center;
+
+//style to the electricCar
+
+@container home (width < 800px) {
+  .electricCars__container {
+    background: yellow;
+    flex-direction: row;
+    h2 {
+      font-size: 40px;
+    }
+  }
+}
+
+.electricCars__container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  gap: 2rem;
+  margin-block-start: 1em;
+}
+.electricCar {
+  //layout of the container
+  width: 50%;
+  display: flex;
+  gap: 0.5em;
+  flex-direction: row;
+  align-items: center;
+
+  //styling the container
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 0.3em;
+  text-align: center;
+  font-size: clamp(1.2rem, 2% + 1vw, 4rem);
+  font-family: map-get($fonts, font-chilanka);
+  box-shadow: 0px 0px 4px grey;
+
+  img {
+    @include img__style;
+  }
+}
+.electricCar > div button {
+  padding: 0.34em 0.7em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgb(141, 144, 150);
+  font-size: clamp(1.2rem, 2% + 1vw, 4rem);
+  transition: box-shadow 200ms ease-in-out, translate 200ms ease-in-out;
+  &:hover {
+    box-shadow: 1px 1px 3px grey;
+    translate: -2px -2px;
+  }
+}
+.electricCar:nth-child(1) div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.electricCar:nth-child(2) div {
+  padding-block: 0.4rem;
+}
+//end of electricCars__container
+//
+//container data
+.container__data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2;
+  margin-block-start: 1rem;
+  width: 90%;
+  background-color: white;
+  margin-block-start: 2em;
+  gap: 1rem;
+  border-radius: $size-m;
+  box-shadow: 0px 0px 4px grey;
+  padding: 0.4rem;
+  box-sizing: border-box !important;
+}
+.container__data > h2 {
+  grid-column: 1/-1;
+  width: 90%;
+  margin-left: 2rem;
+  border-bottom: 1px solid black;
+  font-family: map-get($fonts, font-chilanka);
+}
+
+.container__data .left__side__card {
+  grid-column: 1 / -1;
+  grid-row: 2/3;
+  width: 50%;
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  align-items: center;
+  // padding-left: 0.4rem;
+
+  //style
+  img {
+    @include img__style;
+    width: 100%;
+    height: 400px;
+  }
+  // background-color: lime;
+  h2 {
+    font-size: clamp(1.2rem, 2% + 2vw, 4rem);
+    font-family: map-get($fonts, font-chilanka);
+    color: rgb(6, 101, 120);
+  }
+  h3,
+  p {
+    margin-top: -1rem;
+    font-family: map-get($fonts, font-chilanka);
+  }
+}
+.container__data .left__side__card {
+  h2,
+  p,
+  h3 {
+    padding-inline-start: 1rem;
+    line-height: 1.6rem;
+  }
+}
+
+.right__side_cards__containers {
+  grid-column: 2 / -1;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  //style
+}
+
+.right__side_cards__containers > .right__side__cards {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  align-items: flex-start;
+  img {
+    @include img__style;
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.right__side_cards__containers > .right__side__cards div {
+  font-family: map-get($fonts, font-catamaran);
+  padding-inline-start: 1rem;
+  //
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6rem;
+  h2 {
+    font-size: clamp(1.2rem, 2% + 2vw, 4rem);
+    font-family: map-get($fonts, font-chilanka);
+    color: rgb(6, 101, 120);
+  }
+  h3,
+  p {
+    margin-top: -1rem;
+    font-family: map-get($fonts, font-chilanka);
+  }
+  h3 {
+    font-size: clamp(1.2rem, 1% + 1vw, 4rem);
+  }
+}
+
+@include xl {
+  .electricCars__container {
+    flex-direction: column;
     align-items: center;
+  }
+  .electricCar {
+    width: 80%;
+  }
+  .container__data {
+    width: calc(80% - 2rem);
+    width: 73%;
+  }
+  //
+  .container__data {
+    // background-color: lime;
+    grid-template-columns: repeat(1, 1fr);
+    h2 {
+      grid-column: 1/ -1;
+      grid-row: 1 / 2;
+    }
+    .right__side_cards__containers {
+      grid-column: 1/ -1;
+      grid-row: 3 / 4;
+    }
+    .left__side__card {
+      grid-column: 1/ -1;
+      grid-row: 2 / 3;
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+@include md {
+  .electricCars__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .electricCar {
+    justify-content: flex-start;
+    align-content: flex-end;
+    text-align: left;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    width: 80%;
+    button {
+      width: 50%;
+    }
+  }
+  .electricCar:nth-child(1) div {
+    align-items: flex-start;
+  }
+  .right__side_cards__containers :nth-child(1),
+  .right__side_cards__containers :nth-child(2),
+  .right__side_cards__containers :nth-child(3) {
+    flex-direction: column;
+    img {
+      width: 100%;
+    }
+  }
+}
+@include sm {
+  .electricCar {
+    flex-direction: column;
+    width: 100%;
+    img {
+      width: 100%;
+      height: 70%;
+    }
+    button {
+      width: 50%;
+      translate: 50%;
+    }
+  }
+  //
+  .container__data > h2 {
+    padding: 0;
+  }
+
+  .container__data {
+    width: 95%;
   }
 }

@@ -1,4 +1,4 @@
-import style from '../style/homeCard.module.scss';
+import style from '../style/home.module.scss';
 interface DataType {
   description: string;
   img: string;

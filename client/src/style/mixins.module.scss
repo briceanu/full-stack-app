@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Catamaran:wght@600&family=Chilanka&family=Cinzel+Decorative:wght@700&family=Peralta&family=Racing+Sans+One&family=Righteous&display=swap');
 
+$size-m: 4px;
 $fonts: (
   'font-bruno': 'Bruno',
   'font-catamaran': 'Catamaran',
@@ -17,6 +18,19 @@ $breakpoints: (
   'lg': 960px,
   'xl': 1200px,
 );
+
+@mixin img__style {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+@mixin xl {
+  @media (max-width: map-get($breakpoints,xl)) {
+    @content;
+  }
+}
 @mixin lg {
   @media (max-width: map-get($breakpoints,lg)) {
     @content;

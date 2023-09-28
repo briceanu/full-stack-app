@@ -1,6 +1,6 @@
 import { CarCardProps } from './components/CarCard';
 import { Data } from './components/SaveCar';
-const API = 'http://localhost:3001';
+const API = 'http://localhost:3002';
 
 export const fetchCars = async (): Promise<CarCardProps[]> => {
   try {
@@ -37,13 +37,14 @@ export const deleteCar = async (id: string): Promise<void> => {
     throw error;
   }
 };
+
 export const saveCar = async (
   year: number,
-  color: string,
   status: string,
+  color: string,
+  type: string,
   description: string,
-  brand: string,
-  type: string
+  brand: string
 ): Promise<Data> => {
   try {
     const data = await fetch(`${API}/save`, {
@@ -53,17 +54,17 @@ export const saveCar = async (
       },
       body: JSON.stringify({
         year,
-        color,
-        brand,
         status,
-        description,
+        color,
         type,
+        description,
+        brand,
       }),
     });
     if (!data.ok) {
       const errorData = await data.json();
       console.error('Server Error:', errorData);
-      throw new Error('Could not save data');
+      throw errorData.message.at(0);
     }
     const responseData = await data.json();
     return responseData;

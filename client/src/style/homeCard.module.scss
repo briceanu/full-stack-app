@@ -1,8 +1,9 @@
 @use './mixins.module.scss' as *;
 
 .home__card {
-  border: 2px solid white;
+  border: 2px solid#321a6e;
   color: wheat;
+  border-radius: 20px;
 }
 
 //home__card layout

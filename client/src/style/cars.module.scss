@@ -54,6 +54,14 @@
   }
 }
 
+.car__card h2 {
+  border-bottom: 2px solid #321a6e;
+  border-top: 2px solid #321a6e;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  border-top-right-radius: 14px;
+  border-top-left-radius: 14px;
+}
 .remove__btn {
   &:hover {
     cursor: pointer;

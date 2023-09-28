@@ -1,6 +1,6 @@
 @use './mixins.module.scss' as *;
 .main__container {
-  height: calc(100dvh - 70px);
+  height: calc(100dvh - 50px);
   background-color: #8758ff;
   display: flex;
   flex-direction: column;
